@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 GITHUB_USERNAME = "Santhosh-Madesh"
+
+ALLOWED_HOSTS = ["*"]
