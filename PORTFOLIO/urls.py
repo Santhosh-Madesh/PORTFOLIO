@@ -5,5 +5,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('api/projects/', LatestGitHubProjectsAPIView.as_view(), name="projects"),
     path('api/events/', LatestGitHubActivityAPIView.as_view(), name='activity'),
-    re_path(r'^.*$', FrontendAppView.as_view(), name='frontend'),
+    re_path(r'^.*$', FrontendAppView.as_view(), name='home'),  
 ]

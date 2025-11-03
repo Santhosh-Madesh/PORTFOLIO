@@ -10,10 +10,7 @@ from django.conf import settings
 
 
 class FrontendAppView(TemplateView):
-    template_name = "index.html"
-
-    def get_template_names(self):
-        return [os.path.join(settings.BASE_DIR, "frontend/build/index.html")]
+    template_name = "build/index.html"
 
 
 class LatestGitHubProjectsAPIView(APIView):
