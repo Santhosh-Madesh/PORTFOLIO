@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santhosh Madesh MG | Developer Portfolio</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+  <!-- ===== Navbar ===== -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">SanthoshMadeshMG.dev</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#activity">Activity</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="theme-toggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section id="home" class="hero">
+    <div class="intro">
+      <h2>Hi, I'm <span class="highlight">Santhosh Madesh MG</span></h2>
+      <p>Backend Developer | Django | REST APIs | React and Next (learning)</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+    <!-- =====  Projects ===== -->
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div id="projects" class="project-grid">
+          <!-- JavaScript will inject your latest repos here -->
+        </div>
+      </section>
+
+  <!-- ===== Latest GitHub Projects ===== -->
+  <section id="projects" class="projects">
+    <h2>Latest GitHub Projects</h2>
+    <div id="github-projects" class="project-grid">
+  </section>
+
+  <script>
+    const reposContainer = document.getElementById('github-projects');
+
+    fetch("/api/projects/")
+    .then(res=> res.json())
+    .then(data=>{
+
+      const repos = data.repos;
+      reposContainer.innerHTML = '';
+      repos.forEach(repo => {
+        const card = document.createElement('div');
+        card.className="project-card";
+        card.innerHTML=`
+            <h3>${repo.name}</h3>
+            <p>${repo.description}||No description provided.</p>
+            <a href="${repo.url}" target="_blank" class="btn">View on Github</a>
+        `;
+        reposContainer.appendChild(card);
+      });
+      
+    })
+  </script>
+
+  <!-- ===== Coding Activity Timeline ===== -->
+  <section id="activity" class="activity">
+    <h2>Recent Coding Activity</h2>
+    <ul id="activity-list" class="activity-timeline">
+      <!-- JS will load your recent GitHub commits/events here -->
+    </ul>
+  </section>
+
+  <script>
+    const activitylist = document.getElementById('activity-list');
+
+    fetch('/api/events/')
+    .then(res => res.json())
+    .then(data=>{
+      const events = data.events;
+      activitylist.innerHTML = '';
+      events.forEach(event=>{
+        const card = document.createElement("li");
+        card.innerHTML = `
+            <strong>${event.type}</strong> in
+            <em>${event.repo.name}</em> on ${event.created_at}
+        `;
+        activitylist.appendChild(card);
+      });
+    })
+  </script>
+
+  <!-- ===== Now Section ===== -->
+  <section id="now" class="now">
+    <h2>What I'm Doing Now</h2>
+    <p id="now-text">
+      A passionate individual who is currently pursuing B.Sc Software applications at AMJC.
+      Currently learning React, Next and improving my Django REST API architecture.
+    </p>
+  </section>
+
+  <!-- ===== Skills / Tech Wheel ===== -->
+  <section id="skills" class="skills">
+    <h2>My Skills</h2>
+    <div id="skills-wheel">
+    <!-- React will render the wheel here later -->
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2025 Santhosh Madesh MG | Built with ❤️ using HTML, CSS, and JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
