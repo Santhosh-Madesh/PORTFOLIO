@@ -265,3 +265,4 @@ This project is open source and available under the MIT License.
 - CORS is configured to allow requests from `http://localhost:3000` during development
 - Update `ALLOWED_HOSTS` in `settings.py` before deploying to production
 
+
